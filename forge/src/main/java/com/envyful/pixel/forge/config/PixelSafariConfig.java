@@ -11,11 +11,12 @@ import java.util.List;
 public class PixelSafariConfig extends AbstractYamlConfig {
 
     private String worldName = "SafariWorld";
+    private String mainZone = "Main";
     private double cost = 200.0;
     private long timeInSeconds = 300;
     private List<ZoneInfo> zones = Lists.newArrayList(
             new ZoneInfo("Main", 0, 100, 0),
-            new ZoneInfo("Main", 10, 100, 10)
+            new ZoneInfo("SomeBiome", 10, 100, 10)
     );
 
     public PixelSafariConfig() {
@@ -32,6 +33,10 @@ public class PixelSafariConfig extends AbstractYamlConfig {
 
     public long getTimeInSeconds() {
         return this.timeInSeconds;
+    }
+
+    public String getMainZone() {
+        return this.mainZone;
     }
 
     public List<ZoneInfo> getZones() {
