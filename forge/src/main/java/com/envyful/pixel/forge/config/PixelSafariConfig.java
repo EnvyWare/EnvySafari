@@ -14,9 +14,14 @@ public class PixelSafariConfig extends AbstractYamlConfig {
     private String mainZone = "Main";
     private double cost = 200.0;
     private long timeInSeconds = 300;
+    private String spawnWorldName = "spawn";
+    private ZoneInfo spawnPosition = new ZoneInfo("Spawn", 0, 0, 0, 0f, 0f);
     private List<ZoneInfo> zones = Lists.newArrayList(
-            new ZoneInfo("Main", 0, 100, 0),
-            new ZoneInfo("SomeBiome", 10, 100, 10)
+            new ZoneInfo("Main", 0, 100, 0, 0f, 0f),
+            new ZoneInfo("SomeBiome", 10, 100, 10, 0f, 0f)
+    );
+    private List<String> startCommmands = Lists.newArrayList(
+            "give %player% pixelmon:safari_ball 10"
     );
 
     public PixelSafariConfig() {
@@ -39,25 +44,39 @@ public class PixelSafariConfig extends AbstractYamlConfig {
         return this.mainZone;
     }
 
+    public String getSpawnWorldName() {
+        return this.spawnWorldName;
+    }
+
+    public ZoneInfo getSpawnPosition() {
+        return this.spawnPosition;
+    }
+
     public List<ZoneInfo> getZones() {
         return this.zones;
     }
 
+    public List<String> getStartCommmands() {
+        return this.startCommmands;
+    }
+
     @ConfigSerializable
-    private class ZoneInfo {
+    public static class ZoneInfo {
 
-        private String name;
-        private int x;
-        private int y;
-        private int z;
-        private float yaw;
-        private float pitch;
+        private final String name;
+        private final int x;
+        private final int y;
+        private final int z;
+        private final float yaw;
+        private final float pitch;
 
-        public ZoneInfo(String name, int x, int y, int z) {
+        public ZoneInfo(String name, int x, int y, int z, float pitch, float yaw) {
             this.name = name;
             this.x = x;
             this.y = y;
             this.z = z;
+            this.pitch = pitch;
+            this.yaw = yaw;
         }
 
         public String getName() {
