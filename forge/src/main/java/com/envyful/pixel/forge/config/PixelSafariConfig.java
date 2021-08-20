@@ -45,6 +45,8 @@ public class PixelSafariConfig extends AbstractYamlConfig {
         private int x;
         private int y;
         private int z;
+        private float yaw;
+        private float pitch;
 
         public ZoneInfo(String name, int x, int y, int z) {
             this.name = name;
@@ -67,6 +69,14 @@ public class PixelSafariConfig extends AbstractYamlConfig {
 
         public int getZ() {
             return this.z;
+        }
+
+        public float getPitch() {
+            return this.pitch;
+        }
+
+        public float getYaw() {
+            return this.yaw;
         }
     }
 }

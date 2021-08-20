@@ -1,6 +1,7 @@
 package com.envyful.pixel.forge.command;
 
 import com.envyful.api.command.annotate.Command;
+import com.envyful.api.command.annotate.SubCommands;
 import com.envyful.api.command.annotate.executor.CommandProcessor;
 import com.envyful.api.command.annotate.executor.Sender;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -11,6 +12,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
         aliases = {
                 "safari"
         }
+)
+@SubCommands(
+        SpawnNPCCommand.class
 )
 public class PixelSafariCommand {
 
