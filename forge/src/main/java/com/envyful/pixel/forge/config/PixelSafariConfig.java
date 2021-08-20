@@ -10,7 +10,9 @@ import java.util.List;
 @ConfigPath("config/PixelSafari/config.yml")
 public class PixelSafariConfig extends AbstractYamlConfig {
 
-    private String worldName;
+    private String worldName = "SafariWorld";
+    private double cost = 200.0;
+    private long timeInSeconds = 300;
     private List<ZoneInfo> zones = Lists.newArrayList(
             new ZoneInfo("Main", 0, 100, 0),
             new ZoneInfo("Main", 10, 100, 10)
@@ -22,6 +24,14 @@ public class PixelSafariConfig extends AbstractYamlConfig {
 
     public String getWorldName() {
         return this.worldName;
+    }
+
+    public double getCost() {
+        return this.cost;
+    }
+
+    public long getTimeInSeconds() {
+        return this.timeInSeconds;
     }
 
     public List<ZoneInfo> getZones() {
