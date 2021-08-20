@@ -3,7 +3,9 @@ package com.envyful.pixel.forge;
 import com.envyful.api.config.yaml.YamlConfigFactory;
 import com.envyful.api.forge.command.ForgeCommandFactory;
 import com.envyful.api.forge.concurrency.ForgeUpdateBuilder;
+import com.envyful.api.forge.player.ForgePlayerManager;
 import com.envyful.pixel.forge.config.PixelSafariConfig;
+import com.envyful.pixel.forge.player.PixelSafariAttribute;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -25,6 +27,7 @@ public class PixelSafariForge {
 
     private static PixelSafariForge instance;
 
+    private ForgePlayerManager playerManager = new ForgePlayerManager();
     private ForgeCommandFactory commandFactory = new ForgeCommandFactory();
 
     private PixelSafariConfig config;
@@ -33,18 +36,22 @@ public class PixelSafariForge {
     public void onServerStarting(FMLPreInitializationEvent event) {
         instance = this;
 
+        this.loadConfig();
+
         Metrics metrics = new Metrics(
                 Loader.instance().activeModContainer(),
                 event.getModLog(),
                 Paths.get("config/"),
-                12199
+                12199 //TODO
         );
 
+        playerManager.registerAttribute(this, PixelSafariAttribute.class);
+
         ForgeUpdateBuilder.instance()
-                .name("AdvancedHolograms")
-                .requiredPermission("advancedholograms.update.notify")
+                .name("ForgePixelSafari")
+                .requiredPermission("pixelsafari.update.notify")
                 .owner("Pixelmon-Development")
-                .repo("AdvancedHolograms")
+                .repo("ForgePixelSafari")
                 .version(VERSION)
                 .start();
     }
@@ -59,7 +66,7 @@ public class PixelSafariForge {
 
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
-
+        this.commandFactory.registerCommand(event.getServer(), new PixelSafariForge());
     }
 
     public static PixelSafariForge getInstance() {
