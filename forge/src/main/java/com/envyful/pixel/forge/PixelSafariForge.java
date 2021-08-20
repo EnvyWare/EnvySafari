@@ -8,6 +8,8 @@ import com.envyful.api.forge.player.ForgePlayerManager;
 import com.envyful.pixel.forge.command.PixelSafariCommand;
 import com.envyful.pixel.forge.config.PixelSafariConfig;
 import com.envyful.pixel.forge.listener.NPCInteractListener;
+import com.envyful.pixel.forge.listener.SafariCatchListener;
+import com.envyful.pixel.forge.listener.SafariCommandListener;
 import com.envyful.pixel.forge.player.PixelSafariAttribute;
 import com.envyful.pixel.forge.task.CheckSafariFinishTask;
 import net.minecraftforge.fml.common.Loader;
@@ -72,6 +74,8 @@ public class PixelSafariForge {
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
         new NPCInteractListener(this);
+        new SafariCatchListener(this);
+        new SafariCommandListener(this);
 
         this.commandFactory.registerCommand(event.getServer(), new PixelSafariCommand());
 
