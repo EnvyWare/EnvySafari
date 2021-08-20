@@ -1,4 +1,4 @@
-package com.envyful.pixel.safari;
+package com.envyful.pixel.forge;
 
 import com.envyful.api.forge.command.ForgeCommandFactory;
 import com.envyful.api.forge.concurrency.ForgeUpdateBuilder;
