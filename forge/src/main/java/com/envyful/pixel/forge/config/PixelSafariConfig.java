@@ -19,6 +19,7 @@ public class PixelSafariConfig extends AbstractYamlConfig {
     private double cost = 200.0;
     private long timeInSeconds = 300;
     private String spawnWorldName = "spawn";
+    private Settings safariSettings = new Settings();
     private ZoneInfo spawnPosition = new ZoneInfo("Spawn", 0, 0, 0, 0f, 0f);
     private List<ZoneInfo> zones = Lists.newArrayList(
             new ZoneInfo("Main", 0, 100, 0, 0f, 0f),
@@ -54,6 +55,10 @@ public class PixelSafariConfig extends AbstractYamlConfig {
 
     public ZoneInfo getSpawnPosition() {
         return this.spawnPosition;
+    }
+
+    public Settings getSafariSettings() {
+        return this.safariSettings;
     }
 
     public List<ZoneInfo> getZones() {
@@ -108,6 +113,31 @@ public class PixelSafariConfig extends AbstractYamlConfig {
 
         public float getYaw() {
             return (float) this.yaw;
+        }
+    }
+
+    public static class Settings {
+
+        private boolean allowPVE = true;
+        private boolean allowPVP = false;
+        private List<String> allowedCommands = Lists.newArrayList(
+                "safari",
+                "pixelsafari"
+        );
+
+        public Settings() {
+        }
+
+        public boolean isAllowPVE() {
+            return this.allowPVE;
+        }
+
+        public boolean isAllowPVP() {
+            return this.allowPVP;
+        }
+
+        public List<String> getAllowedCommands() {
+            return this.allowedCommands;
         }
     }
 }
