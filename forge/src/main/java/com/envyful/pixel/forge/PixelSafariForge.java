@@ -5,6 +5,7 @@ import com.envyful.api.forge.command.ForgeCommandFactory;
 import com.envyful.api.forge.concurrency.ForgeTaskBuilder;
 import com.envyful.api.forge.concurrency.ForgeUpdateBuilder;
 import com.envyful.api.forge.player.ForgePlayerManager;
+import com.envyful.pixel.forge.command.PixelSafariCommand;
 import com.envyful.pixel.forge.config.PixelSafariConfig;
 import com.envyful.pixel.forge.listener.NPCInteractListener;
 import com.envyful.pixel.forge.player.PixelSafariAttribute;
@@ -72,7 +73,7 @@ public class PixelSafariForge {
     public void onServerStarting(FMLServerStartingEvent event) {
         new NPCInteractListener(this);
 
-        this.commandFactory.registerCommand(event.getServer(), new PixelSafariForge());
+        this.commandFactory.registerCommand(event.getServer(), new PixelSafariCommand());
 
         new ForgeTaskBuilder()
                 .task(new CheckSafariFinishTask(this))

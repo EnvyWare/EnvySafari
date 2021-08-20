@@ -8,6 +8,7 @@ import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 import java.util.List;
 
 @ConfigPath("config/PixelSafari/config.yml")
+@ConfigSerializable
 public class PixelSafariConfig extends AbstractYamlConfig {
 
     private String worldName = "SafariWorld";
@@ -63,14 +64,17 @@ public class PixelSafariConfig extends AbstractYamlConfig {
     @ConfigSerializable
     public static class ZoneInfo {
 
-        private final String name;
-        private final int x;
-        private final int y;
-        private final int z;
-        private final float yaw;
-        private final float pitch;
+        private String name;
+        private int x;
+        private int y;
+        private int z;
+        private double yaw;
+        private double pitch;
 
-        public ZoneInfo(String name, int x, int y, int z, float pitch, float yaw) {
+        public ZoneInfo() {
+        }
+
+        public ZoneInfo(String name, int x, int y, int z, double pitch, double yaw) {
             this.name = name;
             this.x = x;
             this.y = y;
@@ -96,11 +100,11 @@ public class PixelSafariConfig extends AbstractYamlConfig {
         }
 
         public float getPitch() {
-            return this.pitch;
+            return (float) this.pitch;
         }
 
         public float getYaw() {
-            return this.yaw;
+            return (float) this.yaw;
         }
     }
 }

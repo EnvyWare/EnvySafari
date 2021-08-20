@@ -5,6 +5,7 @@ import com.envyful.api.forge.player.attribute.AbstractForgeAttribute;
 import com.envyful.api.forge.player.util.UtilTeleport;
 import com.envyful.api.forge.server.UtilForgeServer;
 import com.envyful.api.forge.world.UtilWorld;
+import com.envyful.api.player.EnvyPlayer;
 import com.envyful.pixel.forge.PixelSafariForge;
 import com.envyful.pixel.forge.config.PixelSafariConfig;
 import com.pixelmonmod.pixelmon.Pixelmon;
@@ -18,8 +19,8 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
     private long safariEnd = -1;
     private IPixelmonBankAccount bankAccount = null;
 
-    public PixelSafariAttribute(PixelSafariForge manager, ForgeEnvyPlayer parent) {
-        super(manager, parent);
+    public PixelSafariAttribute(PixelSafariForge manager, EnvyPlayer<?> parent) {
+        super(manager, (ForgeEnvyPlayer) parent);
     }
 
     public boolean inSafari() {
