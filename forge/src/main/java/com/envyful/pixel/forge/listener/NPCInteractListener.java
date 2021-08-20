@@ -11,9 +11,13 @@ import com.pixelmonmod.pixelmon.client.gui.battles.GuiAcceptDeny;
 import com.pixelmonmod.pixelmon.comm.packetHandlers.dialogue.DialogueNextAction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.util.stream.Collectors;
 
 public class NPCInteractListener extends LazyListener {
 
@@ -25,11 +29,14 @@ public class NPCInteractListener extends LazyListener {
         this.mod = mod;
     }
 
-    @SubscribeEvent
-    public void onPlayerInteract(PlayerInteractEvent.EntityInteractSpecific event) {
-        if (!this.isNPC(event.getEntity())) {
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public void onPlayerInteract(PlayerInteractEvent.EntityInteract event) {
+        if (!this.isNPC(event.getTarget())) {
             return;
         }
+
+        event.setCanceled(true);
+        event.setCancellationResult(EnumActionResult.PASS);
 
         EntityPlayerMP player = (EntityPlayerMP) event.getEntityPlayer();
         PixelSafariAttribute attribute = this.mod.getPlayerManager().getPlayer(player).getAttribute(PixelSafariForge.class);
@@ -57,6 +64,6 @@ public class NPCInteractListener extends LazyListener {
     }
 
     private boolean isNPC(Entity entity) {
-        return entity.getTags().contains(PixelSafariForge.NPC_NBT);
+        return entity.getEntityData().hasKey(PixelSafariForge.NPC_NBT);
     }
 }

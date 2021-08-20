@@ -1,5 +1,6 @@
 package com.envyful.pixel.forge.player;
 
+import com.envyful.api.forge.chat.UtilChatColour;
 import com.envyful.api.forge.player.ForgeEnvyPlayer;
 import com.envyful.api.forge.player.attribute.AbstractForgeAttribute;
 import com.envyful.api.forge.player.util.UtilTeleport;
@@ -54,7 +55,7 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
         UtilTeleport.teleportPlayer(this.parent.getParent(), UtilWorld.findWorld(this.manager.getConfig().getWorldName()),
                 new Vec3d(zoneInfo.getX() + 0.5, zoneInfo.getY(), zoneInfo.getZ() + 0.5),
                 zoneInfo.getPitch(), zoneInfo.getYaw());
-        this.parent.message("&c&l- &c$" + this.manager.getConfig().getCost());
+        this.parent.message(UtilChatColour.translateColourCodes('&',"&c&l- &c$" + this.manager.getConfig().getCost()));
     }
 
     private PixelSafariConfig.ZoneInfo getZone(String zone) {
@@ -83,7 +84,7 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
         PixelSafariConfig.ZoneInfo zoneInfo = this.manager.getConfig().getSpawnPosition();
 
         this.safariEnd = -1;
-        this.parent.message("&e&l(!) &eTeleporting you to spawn");
+        this.parent.message(UtilChatColour.translateColourCodes('&', "&e&l(!) &eTeleporting you to spawn"));
         UtilTeleport.teleportPlayer(this.parent.getParent(), UtilWorld.findWorld(this.manager.getConfig().getSpawnWorldName()),
                 new Vec3d(zoneInfo.getX() + 0.5, zoneInfo.getY(), zoneInfo.getZ() + 0.5),
                 zoneInfo.getPitch(), zoneInfo.getYaw());
