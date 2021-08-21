@@ -37,7 +37,7 @@ public class SpawnNPCCommand {
             npc.addTag(PixelSafariForge.NPC_NBT);
             npc.ignoreDespawnCounter = true;
             npc.initAI();
-            npc.init("Blacksmith");
+            npc.init(PixelSafariForge.getInstance().getConfig().getNpcSkin());
 
             player.world.spawnEntity(npc);
             npc.getEntityData().setBoolean(PixelSafariForge.NPC_NBT, true);

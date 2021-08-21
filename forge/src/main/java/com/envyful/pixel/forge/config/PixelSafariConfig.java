@@ -16,6 +16,7 @@ public class PixelSafariConfig extends AbstractYamlConfig {
 
     private String worldName = "SafariWorld";
     private String mainZone = "Main";
+    private String npcSkin = "Gardener";
     private double cost = 200.0;
     private long timeInSeconds = 300;
     private String spawnWorldName = "spawn";
@@ -59,6 +60,10 @@ public class PixelSafariConfig extends AbstractYamlConfig {
 
     public Settings getSafariSettings() {
         return this.safariSettings;
+    }
+
+    public String getNpcSkin() {
+        return this.npcSkin;
     }
 
     public List<ZoneInfo> getZones() {
