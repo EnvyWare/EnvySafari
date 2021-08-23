@@ -121,6 +121,7 @@ public class PixelSafariConfig extends AbstractYamlConfig {
         }
     }
 
+    @ConfigSerializable
     public static class Settings {
 
         private boolean allowPVE = true;
