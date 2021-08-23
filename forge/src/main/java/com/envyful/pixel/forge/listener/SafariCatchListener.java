@@ -21,7 +21,6 @@ public class SafariCatchListener {
 
     @SubscribeEvent
     public void onBattleStart(BattleStartedEvent event) {
-
         if (!this.mod.getConfig().getWorldName()
                 .equalsIgnoreCase(event.participant1[0].getWorld().getWorldInfo().getWorldName())) {
             return;
@@ -42,7 +41,7 @@ public class SafariCatchListener {
 
     private boolean isPlayer(BattleParticipant... participants) {
         for (BattleParticipant participant : participants) {
-            if (participant != null && participant instanceof PlayerParticipant) {
+            if (participant instanceof PlayerParticipant) {
                 return true;
             }
         }
