@@ -9,12 +9,7 @@ import com.envyful.api.forge.concurrency.UtilForgeConcurrency;
 import com.envyful.api.player.EnvyPlayer;
 import com.envyful.pixel.forge.PixelSafariForge;
 import com.envyful.pixel.forge.player.PixelSafariAttribute;
-import com.pixelmonmod.pixelmon.entities.npcs.NPCChatting;
-import com.pixelmonmod.pixelmon.enums.EnumTrainerAI;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.text.TextComponentString;
-
-import java.util.stream.Collectors;
 
 @Command(
         value = "leave",
@@ -26,8 +21,9 @@ import java.util.stream.Collectors;
 @Permissible("pixel.safari.command.leave")
 public class LeaveCommand {
 
-    @CommandProcessor()
-    public void onCommand(@Sender EnvyPlayer<?> player, String[] args) {
+    @CommandProcessor
+    public void onCommand(@Sender EntityPlayerMP sender, String[] args) {
+        EnvyPlayer<?> player = PixelSafariForge.getInstance().getPlayerManager().getPlayer(sender);
         PixelSafariAttribute attribute = player.getAttribute(PixelSafariForge.class);
 
         if (!attribute.inSafari()) {
