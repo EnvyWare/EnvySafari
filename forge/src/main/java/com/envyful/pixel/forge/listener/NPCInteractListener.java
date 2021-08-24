@@ -5,10 +5,8 @@ import com.envyful.api.forge.listener.LazyListener;
 import com.envyful.api.forge.world.UtilWorld;
 import com.envyful.pixel.forge.PixelSafariForge;
 import com.envyful.pixel.forge.player.PixelSafariAttribute;
-import com.pixelmonmod.pixelmon.Pixelmon;
 import com.pixelmonmod.pixelmon.api.dialogue.Choice;
 import com.pixelmonmod.pixelmon.api.dialogue.Dialogue;
-import com.pixelmonmod.pixelmon.client.gui.battles.GuiAcceptDeny;
 import com.pixelmonmod.pixelmon.comm.packetHandlers.dialogue.DialogueNextAction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -18,8 +16,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import java.util.stream.Collectors;
 
 public class NPCInteractListener extends LazyListener {
 

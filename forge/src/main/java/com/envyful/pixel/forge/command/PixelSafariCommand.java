@@ -17,7 +17,8 @@ import net.minecraft.util.text.TextComponentString;
 )
 @SubCommands({
         SpawnNPCCommand.class,
-        LeaveCommand.class
+        LeaveCommand.class,
+        SafariJoinCommand.class
 })
 public class PixelSafariCommand {
 
