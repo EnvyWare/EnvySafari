@@ -30,7 +30,7 @@ import java.nio.file.Paths;
 public class PixelSafariForge {
 
     public static final String NPC_NBT = "PIXEL_SAFARI_NPC";
-    public static final String VERSION = "0.2.0";
+    public static final String VERSION = "0.3.0";
 
     private static PixelSafariForge instance;
 
@@ -49,7 +49,7 @@ public class PixelSafariForge {
                 Loader.instance().activeModContainer(),
                 event.getModLog(),
                 Paths.get("config/"),
-                12199 //TODO
+                12565
         );
 
         playerManager.registerAttribute(this, PixelSafariAttribute.class);
