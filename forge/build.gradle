@@ -33,6 +33,10 @@ repositories {
     flatDir {
         dirs '../../Libraries/'
     }
+
+    flatDir {
+        dirs '../Libraries/'
+    }
 }
 
 dependencies {
