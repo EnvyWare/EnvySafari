@@ -3,7 +3,6 @@ package com.envyful.pixel.forge;
 import com.envyful.api.config.yaml.YamlConfigFactory;
 import com.envyful.api.forge.command.ForgeCommandFactory;
 import com.envyful.api.forge.concurrency.ForgeTaskBuilder;
-import com.envyful.api.forge.concurrency.ForgeUpdateBuilder;
 import com.envyful.api.forge.player.ForgePlayerManager;
 import com.envyful.pixel.forge.command.PixelSafariCommand;
 import com.envyful.pixel.forge.config.PixelSafariConfig;
@@ -12,14 +11,11 @@ import com.envyful.pixel.forge.listener.SafariCatchListener;
 import com.envyful.pixel.forge.listener.SafariCommandListener;
 import com.envyful.pixel.forge.player.PixelSafariAttribute;
 import com.envyful.pixel.forge.task.CheckSafariFinishTask;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import org.bstats.forge.Metrics;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 
 @Mod(
         modid = "pixelsafari",
