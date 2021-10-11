@@ -30,7 +30,7 @@ import java.nio.file.Paths;
 public class PixelSafariForge {
 
     public static final String NPC_NBT = "PIXEL_SAFARI_NPC";
-    public static final String VERSION = "0.3.0";
+    public static final String VERSION = "0.4.0";
 
     private static PixelSafariForge instance;
 
@@ -45,22 +45,7 @@ public class PixelSafariForge {
 
         this.loadConfig();
 
-        Metrics metrics = new Metrics(
-                Loader.instance().activeModContainer(),
-                event.getModLog(),
-                Paths.get("config/"),
-                12565
-        );
-
         playerManager.registerAttribute(this, PixelSafariAttribute.class);
-
-        ForgeUpdateBuilder.instance()
-                .name("ForgePixelSafari")
-                .requiredPermission("pixelsafari.update.notify")
-                .owner("Pixelmon-Development")
-                .repo("ForgePixelSafari")
-                .version(VERSION)
-                .start();
     }
 
     private void loadConfig() {
