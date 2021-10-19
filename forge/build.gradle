@@ -45,8 +45,8 @@ dependencies {
 
     shadow group: 'org.spongepowered', name: 'configurate-yaml', version: '4.0.0'
 
-    shadow group: 'com.github.Pixelmon-Development.API', name: 'commons', version: '0.9.2'
-    shadow group: 'com.github.Pixelmon-Development.API', name: 'forge', version: '0.9.2'
+    shadow group: 'com.github.Pixelmon-Development.API', name: 'commons', version: '0.9.9'
+    shadow group: 'com.github.Pixelmon-Development.API', name: 'forge', version: '0.9.9'
 }
 
 shadowJar {
