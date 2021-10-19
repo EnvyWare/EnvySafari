@@ -6,14 +6,13 @@ import com.envyful.api.command.annotate.executor.CommandProcessor;
 import com.envyful.api.command.annotate.executor.Sender;
 import com.envyful.api.forge.chat.UtilChatColour;
 import com.envyful.api.forge.concurrency.UtilForgeConcurrency;
-import com.envyful.api.forge.server.UtilForgeServer;
 import com.envyful.pixel.forge.PixelSafariForge;
 import com.pixelmonmod.pixelmon.entities.npcs.NPCChatting;
 import com.pixelmonmod.pixelmon.enums.EnumTrainerAI;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.text.TextComponentString;
 
-import java.util.stream.Collectors;
+import java.util.ArrayList;
 
 @Command(
         value = "spawnnpc",
@@ -41,7 +40,7 @@ public class SpawnNPCCommand {
 
             player.world.spawnEntity(npc);
             npc.getEntityData().setBoolean(PixelSafariForge.NPC_NBT, true);
-            System.out.println(npc.getEntityData().getKeySet().stream().collect(Collectors.toList()));
+            System.out.println(new ArrayList<>(npc.getEntityData().getKeySet()));
 
             player.sendMessage(new TextComponentString(UtilChatColour.translateColourCodes('&',
                     "&e&l(!) &eSpawned NPC.")));
