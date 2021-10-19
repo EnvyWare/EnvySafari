@@ -2,16 +2,15 @@ package com.envyful.pixel.forge.config;
 
 import com.envyful.api.config.data.ConfigPath;
 import com.envyful.api.config.yaml.AbstractYamlConfig;
-import com.envyful.api.config.yaml.data.YamlConfigStyle;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;
-import org.spongepowered.configurate.yaml.NodeStyle;
 
 import java.util.List;
+import java.util.Map;
 
 @ConfigPath("config/PixelSafari/config.yml")
 @ConfigSerializable
-@YamlConfigStyle(NodeStyle.FLOW)
 public class PixelSafariConfig extends AbstractYamlConfig {
 
     private String worldName = "SafariWorld";
@@ -22,9 +21,9 @@ public class PixelSafariConfig extends AbstractYamlConfig {
     private String spawnWorldName = "spawn";
     private Settings safariSettings = new Settings();
     private ZoneInfo spawnPosition = new ZoneInfo("Spawn", 0, 0, 0, 0f, 0f);
-    private List<ZoneInfo> zones = Lists.newArrayList(
-            new ZoneInfo("Main", 0, 100, 0, 0f, 0f),
-            new ZoneInfo("SomeBiome", 10, 100, 10, 0f, 0f)
+    private Map<String, ZoneInfo> zones = ImmutableMap.of(
+            "one", new ZoneInfo("Main", 0, 100, 0, 0f, 0f),
+            "two", new ZoneInfo("SomeBiome", 10, 100, 10, 0f, 0f)
     );
     private List<String> startCommmands = Lists.newArrayList(
             "give %player% pixelmon:safari_ball 10"
@@ -67,7 +66,7 @@ public class PixelSafariConfig extends AbstractYamlConfig {
     }
 
     public List<ZoneInfo> getZones() {
-        return this.zones;
+        return Lists.newArrayList(this.zones.values());
     }
 
     public List<String> getStartCommmands() {
