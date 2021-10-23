@@ -44,7 +44,7 @@ public class PixelSafariForge {
         playerManager.registerAttribute(this, PixelSafariAttribute.class);
     }
 
-    private void loadConfig() {
+    public void loadConfig() {
         try {
             this.config = YamlConfigFactory.getInstance(PixelSafariConfig.class);
         } catch (IOException e) {

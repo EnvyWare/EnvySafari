@@ -19,7 +19,8 @@ import net.minecraft.util.text.TextComponentString;
         SpawnNPCCommand.class,
         LeaveCommand.class,
         SafariJoinCommand.class,
-        WorldInfoCommand.class
+        WorldInfoCommand.class,
+        ReloadCommand.class
 })
 public class PixelSafariCommand {
 

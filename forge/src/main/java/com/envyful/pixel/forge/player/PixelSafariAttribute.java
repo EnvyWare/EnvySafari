@@ -12,6 +12,7 @@ import com.envyful.pixel.forge.config.PixelSafariConfig;
 import com.pixelmonmod.pixelmon.Pixelmon;
 import com.pixelmonmod.pixelmon.api.economy.IPixelmonBankAccount;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
 import java.util.concurrent.TimeUnit;
 
@@ -52,7 +53,8 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
             UtilForgeServer.executeCommand(startCommmand.replace("%player%", this.parent.getParent().getName()));
         }
 
-        UtilTeleport.teleportPlayer(this.parent.getParent(), UtilWorld.findWorld(this.manager.getConfig().getWorldName()),
+        World world = UtilWorld.findWorld(this.manager.getConfig().getWorldName());
+        UtilTeleport.teleportPlayer(this.parent.getParent(), world,
                 new Vec3d(zoneInfo.getX() + 0.5, zoneInfo.getY(), zoneInfo.getZ() + 0.5),
                 zoneInfo.getPitch(), zoneInfo.getYaw());
         this.parent.message(UtilChatColour.translateColourCodes('&',"&c&l- &c$" + this.manager.getConfig().getCost()));
