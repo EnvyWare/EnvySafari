@@ -12,8 +12,6 @@ import com.pixelmonmod.pixelmon.enums.EnumTrainerAI;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.text.TextComponentString;
 
-import java.util.ArrayList;
-
 @Command(
         value = "spawnnpc",
         description = "Spawns the Safari NPC on your location",
@@ -40,7 +38,6 @@ public class SpawnNPCCommand {
 
             player.world.spawnEntity(npc);
             npc.getEntityData().setBoolean(PixelSafariForge.NPC_NBT, true);
-            System.out.println(new ArrayList<>(npc.getEntityData().getKeySet()));
 
             player.sendMessage(new TextComponentString(UtilChatColour.translateColourCodes('&',
                     "&e&l(!) &eSpawned NPC.")));
