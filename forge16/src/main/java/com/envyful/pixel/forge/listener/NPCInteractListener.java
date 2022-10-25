@@ -42,7 +42,9 @@ public class NPCInteractListener extends LazyListener {
         PixelSafariAttribute attribute = this.mod.getPlayerManager().getPlayer(player).getAttribute(PixelSafariForge.class);
 
         if (world == null) {
-            player.sendMessage(UtilChatColour.colour("&c&l(!) &cThe safari is currently closed!"), Util.NIL_UUID);
+            for (String s : this.mod.getLocale().getCurrentlyClosed()) {
+                player.sendMessage(UtilChatColour.colour(s), Util.NIL_UUID);
+            }
             return;
         }
 
@@ -51,7 +53,9 @@ public class NPCInteractListener extends LazyListener {
         }
 
         if (!attribute.hasEnoughMoney()) {
-            player.sendMessage(UtilChatColour.colour("&c&l(!) &cInsufficient funds!"), Util.NIL_UUID);
+            for (String s : this.mod.getLocale().getNotEnoughMoney()) {
+                player.sendMessage(UtilChatColour.colour(s), Util.NIL_UUID);
+            }
             return;
         }
 

@@ -6,6 +6,7 @@ import com.envyful.api.forge.concurrency.ForgeTaskBuilder;
 import com.envyful.api.forge.player.ForgePlayerManager;
 import com.envyful.pixel.forge.command.PixelSafariCommand;
 import com.envyful.pixel.forge.config.PixelSafariConfig;
+import com.envyful.pixel.forge.config.PixelSafariLocale;
 import com.envyful.pixel.forge.listener.NPCInteractListener;
 import com.envyful.pixel.forge.listener.SafariCatchListener;
 import com.envyful.pixel.forge.listener.SafariCommandListener;
@@ -31,6 +32,7 @@ public class PixelSafariForge {
     private ForgeCommandFactory commandFactory = new ForgeCommandFactory();
 
     private PixelSafariConfig config;
+    private PixelSafariLocale locale;
 
     public PixelSafariForge() {
         MinecraftForge.EVENT_BUS.register(this);
@@ -45,6 +47,7 @@ public class PixelSafariForge {
     public void loadConfig() {
         try {
             this.config = YamlConfigFactory.getInstance(PixelSafariConfig.class);
+            this.locale = YamlConfigFactory.getInstance(PixelSafariLocale.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -79,5 +82,9 @@ public class PixelSafariForge {
 
     public ForgePlayerManager getPlayerManager() {
         return this.playerManager;
+    }
+
+    public PixelSafariLocale getLocale() {
+        return this.locale;
     }
 }

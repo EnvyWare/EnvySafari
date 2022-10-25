@@ -4,7 +4,6 @@ import com.envyful.api.command.annotate.Command;
 import com.envyful.api.command.annotate.Permissible;
 import com.envyful.api.command.annotate.executor.CommandProcessor;
 import com.envyful.api.command.annotate.executor.Sender;
-import com.envyful.api.forge.chat.UtilChatColour;
 import com.envyful.api.forge.world.UtilWorld;
 import com.envyful.api.player.EnvyPlayer;
 import com.envyful.pixel.forge.PixelSafariForge;
@@ -14,7 +13,6 @@ import com.pixelmonmod.pixelmon.api.dialogue.Choice;
 import com.pixelmonmod.pixelmon.api.dialogue.Dialogue;
 import com.pixelmonmod.pixelmon.comm.packetHandlers.dialogue.DialogueNextActionPacket;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.Util;
 import net.minecraft.world.World;
 
 @Command(
@@ -39,12 +37,12 @@ public class SafariJoinCommand {
         World world = UtilWorld.findWorld(PixelSafariForge.getInstance().getConfig().getWorldName());
 
         if (world == null) {
-            player.sendMessage(UtilChatColour.colour("&c&l(!) &cThe safari is currently closed!"), Util.NIL_UUID);
+            envyPlayer.message(PixelSafariForge.getInstance().getLocale().getCurrentlyClosed());
             return;
         }
 
         if (!attribute.hasEnoughMoney()) {
-            player.sendMessage(UtilChatColour.colour("&c&l(!) &cInsufficient funds!"), Util.NIL_UUID);
+            envyPlayer.message(PixelSafariForge.getInstance().getLocale().getNotEnoughMoney());
             return;
         }
 
@@ -57,7 +55,7 @@ public class SafariJoinCommand {
         PixelSafariConfig.ZoneInfo zoneInfo = this.getZone(zone);
 
         if (zoneInfo == null) {
-            player.sendMessage(UtilChatColour.colour("&c&l(!) &cCannot find that zone!"), Util.NIL_UUID);
+            envyPlayer.message(PixelSafariForge.getInstance().getLocale().getCannotFindSafariZone());
             return;
         }
 

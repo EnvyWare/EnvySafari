@@ -86,7 +86,7 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
         PixelSafariConfig.ZoneInfo zoneInfo = this.manager.getConfig().getSpawnPosition();
 
         this.safariEnd = -1;
-        this.parent.message(UtilChatColour.translateColourCodes('&', "&e&l(!) &eTeleporting you to spawn"));
+        this.parent.message(this.manager.getLocale().getReturningToSpawn());
         UtilTeleport.teleportPlayer(this.parent.getParent(), UtilWorld.findWorld(this.manager.getConfig().getSpawnWorldName()),
                 new Vector3d(zoneInfo.getX() + 0.5, zoneInfo.getY(), zoneInfo.getZ() + 0.5),
                 zoneInfo.getPitch(), zoneInfo.getYaw());
