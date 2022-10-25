@@ -1,12 +1,12 @@
 modLoader="javafml"
 loaderVersion="[36,)"
 license="MIT"
-issueTrackerURL="https://github.com/EnvyWare/ForgePixelSafari/issues"
+issueTrackerURL="https://github.com/EnvyWare/pixelsafari/issues"
 
 [[mods]]
-modId="forgepixelsafari"
+modId="pixelsafari"
 version="1.0.1"
-displayName="ForgePixelSafari"
+displayName="pixelsafari"
 displayURL="https://github.com/EnvyWare"
 credits="https://github.com/EnvyWare"
 authors="https://github.com/EnvyWare"
@@ -14,14 +14,14 @@ description='''
 Safari
 '''
 
-[[dependencies.forgepixelsafari]]
+[[dependencies.pixelsafari]]
 modId="forge"
 mandatory=true
 versionRange="[36,)"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.forgepixelsafari]]
+[[dependencies.pixelsafari]]
 modId="minecraft"
 mandatory=true
 versionRange="[1.16.5,1.17)"
