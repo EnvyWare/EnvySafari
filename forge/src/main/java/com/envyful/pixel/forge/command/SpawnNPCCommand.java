@@ -32,7 +32,7 @@ public class SpawnNPCCommand {
             npc.setAIMode(EnumTrainerAI.StandStill);
             npc.setAIMoveSpeed(0.0f);
             npc.addTag(PixelSafariForge.NPC_NBT);
-            npc.ignoreDespawnCounter = true;
+            npc.enablePersistence();
             npc.initAI();
             npc.init(PixelSafariForge.getInstance().getConfig().getNpcSkin());
 
