@@ -14,6 +14,7 @@ import com.pixelmonmod.pixelmon.api.economy.BankAccountProxy;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForge> {
@@ -23,6 +24,10 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
 
     public PixelSafariAttribute(PixelSafariForge manager, EnvyPlayer<?> parent) {
         super(manager, (ForgeEnvyPlayer) parent);
+    }
+
+    public PixelSafariAttribute(UUID uuid) {
+        super(uuid);
     }
 
     public boolean inSafari() {

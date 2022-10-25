@@ -7,13 +7,12 @@ import com.envyful.pixel.forge.PixelSafariForge;
 import com.envyful.pixel.forge.player.PixelSafariAttribute;
 import com.pixelmonmod.pixelmon.api.dialogue.Choice;
 import com.pixelmonmod.pixelmon.api.dialogue.Dialogue;
+import com.pixelmonmod.pixelmon.api.events.npc.NPCEvent;
 import com.pixelmonmod.pixelmon.comm.packetHandlers.dialogue.DialogueNextActionPacket;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Util;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -28,17 +27,16 @@ public class NPCInteractListener extends LazyListener {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public void onPlayerInteract(PlayerInteractEvent.EntityInteract event) {
-        if (!this.isNPC(event.getTarget())) {
+    public void onPlayerInteract(NPCEvent.Interact event) {
+        if (!this.isNPC(event.npc)) {
             return;
         }
 
         event.setCanceled(true);
-        event.setCancellationResult(ActionResultType.PASS);
 
         World world = UtilWorld.findWorld(this.mod.getConfig().getWorldName());
 
-        ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
+        ServerPlayerEntity player = (ServerPlayerEntity) event.player;
         PixelSafariAttribute attribute = this.mod.getPlayerManager().getPlayer(player).getAttribute(PixelSafariForge.class);
 
         if (world == null) {
