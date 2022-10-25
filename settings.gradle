@@ -1,2 +1,3 @@
 rootProject.name = 'ForgePixelSafari'
 include 'forge'
+include 'forge16'
