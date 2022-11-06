@@ -1,6 +1,7 @@
 package com.envyful.pixel.forge.config;
 
 import com.envyful.api.config.data.ConfigPath;
+import com.envyful.api.config.type.ConfigItem;
 import com.envyful.api.config.yaml.AbstractYamlConfig;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
@@ -125,6 +126,12 @@ public class PixelSafariConfig extends AbstractYamlConfig {
 
         private boolean allowPVE = true;
         private boolean allowPVP = false;
+        private boolean cacheInventory = false;
+        private Map<String, ConfigItem> tempItems = ImmutableMap.of("example", ConfigItem.builder()
+                        .type("pixelmon:poke_ball")
+                        .amount(16)
+                        .name("Safari Poke Ball")
+                .build());
         private List<String> allowedCommands = Lists.newArrayList(
                 "safari",
                 "pixelsafari"
@@ -133,8 +140,16 @@ public class PixelSafariConfig extends AbstractYamlConfig {
         public Settings() {
         }
 
+        public boolean isCacheInventory() {
+            return this.cacheInventory;
+        }
+
         public boolean isAllowPVE() {
             return this.allowPVE;
+        }
+
+        public List<ConfigItem> getTemporaryItems() {
+            return Lists.newArrayList(this.tempItems.values());
         }
 
         public boolean isAllowPVP() {
