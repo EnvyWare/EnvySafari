@@ -21,6 +21,7 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
 
     private long safariEnd = -1;
     private BankAccount bankAccount = null;
+    private boolean inSafari = false;
 
     public PixelSafariAttribute(PixelSafariForge manager, EnvyPlayer<?> parent) {
         super(manager, (ForgeEnvyPlayer) parent);
@@ -31,8 +32,7 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
     }
 
     public boolean inSafari() {
-        return UtilWorld.getName(this.getParent().getParent().getLevel())
-                .equalsIgnoreCase(PixelSafariForge.getInstance().getConfig().getWorldName());
+        return this.inSafari;
     }
 
     public boolean shouldSafariFinish() {
@@ -40,6 +40,7 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
     }
 
     public void startSafari() {
+        this.inSafari = true;
         this.startSafari(this.manager.getConfig().getMainZone());
     }
 
@@ -90,6 +91,7 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
     public void finishSafari() {
         PixelSafariConfig.ZoneInfo zoneInfo = this.manager.getConfig().getSpawnPosition();
 
+        this.inSafari = false;
         this.safariEnd = -1;
         this.parent.message(this.manager.getLocale().getReturningToSpawn());
         UtilTeleport.teleportPlayer(this.parent.getParent(), UtilWorld.findWorld(this.manager.getConfig().getSpawnWorldName()),
