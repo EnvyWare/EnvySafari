@@ -36,8 +36,10 @@ public class SafariCommandListener extends LazyListener {
     }
 
     private boolean isAllowedCommand(CommandEvent event) {
+        String command = event.getParseResults().getReader().getString();
+
         for (String allowedCommand : this.mod.getConfig().getSafariSettings().getAllowedCommands()) {
-            if (event.getParseResults().getContext().getRootNode().getName().equalsIgnoreCase(allowedCommand)) {
+            if (command.equalsIgnoreCase(allowedCommand)) {
                 return true;
             }
         }
