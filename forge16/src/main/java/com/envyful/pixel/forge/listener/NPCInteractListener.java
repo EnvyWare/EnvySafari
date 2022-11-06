@@ -4,6 +4,7 @@ import com.envyful.api.forge.chat.UtilChatColour;
 import com.envyful.api.forge.listener.LazyListener;
 import com.envyful.api.forge.world.UtilWorld;
 import com.envyful.pixel.forge.PixelSafariForge;
+import com.envyful.pixel.forge.config.PixelSafariLocale;
 import com.envyful.pixel.forge.player.PixelSafariAttribute;
 import com.pixelmonmod.pixelmon.api.dialogue.Choice;
 import com.pixelmonmod.pixelmon.api.dialogue.Dialogue;
@@ -57,14 +58,16 @@ public class NPCInteractListener extends LazyListener {
             return;
         }
 
+        PixelSafariLocale.NPCDialogue npcDialogue = this.mod.getLocale().getNpcDialogue();
+
         new Dialogue.DialogueBuilder()
-                .setName("Safari")
-                .setText("Are you sure you want to pay $" + this.mod.getConfig().getCost() + " to enter the safari zone?")
-                .addChoice(new Choice("Yes", dialogueChoiceEvent -> {
+                .setName(npcDialogue.getTitle())
+                .setText(npcDialogue.getTextBody())
+                .addChoice(new Choice(npcDialogue.getYesOption(), dialogueChoiceEvent -> {
                     dialogueChoiceEvent.setAction(DialogueNextActionPacket.DialogueGuiAction.CLOSE);
                     attribute.startSafari();
                 }))
-                .addChoice(new Choice("No", dialogueChoiceEvent ->
+                .addChoice(new Choice(npcDialogue.getNoOption(), dialogueChoiceEvent ->
                         dialogueChoiceEvent.setAction(DialogueNextActionPacket.DialogueGuiAction.CLOSE)))
                 .build().open(player);
     }

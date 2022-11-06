@@ -39,6 +39,8 @@ public class PixelSafariLocale extends AbstractYamlConfig {
             "&c&l(!) &cCannot find that zone!"
     );
 
+    private NPCDialogue npcDialogue = new NPCDialogue();
+
     public PixelSafariLocale() {
         super();
     }
@@ -69,5 +71,37 @@ public class PixelSafariLocale extends AbstractYamlConfig {
 
     public List<String> getCannotFindSafariZone() {
         return this.cannotFindSafariZone;
+    }
+
+    public NPCDialogue getNpcDialogue() {
+        return this.npcDialogue;
+    }
+
+    @ConfigSerializable
+    public static class NPCDialogue {
+
+        private String title = "Safari";
+        private String textBody = "Are you sure you want to pay $200 to enter the safari zone?";
+        private String yesOption = "Yes";
+        private String noOption = "No";
+
+        public NPCDialogue() {
+        }
+
+        public String getTitle() {
+            return this.title;
+        }
+
+        public String getTextBody() {
+            return this.textBody;
+        }
+
+        public String getYesOption() {
+            return this.yesOption;
+        }
+
+        public String getNoOption() {
+            return this.noOption;
+        }
     }
 }
