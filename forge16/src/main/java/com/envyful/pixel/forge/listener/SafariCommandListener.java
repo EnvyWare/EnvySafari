@@ -43,10 +43,8 @@ public class SafariCommandListener extends LazyListener {
     }
 
     private boolean isAllowedCommand(String command) {
-        System.out.println("Checking command: " + command);
         for (String allowedCommand : this.mod.getConfig().getSafariSettings().getAllowedCommands()) {
             if (command.equalsIgnoreCase(allowedCommand)) {
-                System.out.println("Match found: " + command +" " + allowedCommand);
                 return true;
             }
         }
