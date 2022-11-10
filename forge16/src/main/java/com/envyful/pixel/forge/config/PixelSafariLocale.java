@@ -11,6 +11,10 @@ import java.util.List;
 @ConfigSerializable
 public class PixelSafariLocale extends AbstractYamlConfig {
 
+    private List<String> blockedSafariCommand = Lists.newArrayList(
+            "&c&l(!) &cYou cannot use that command whilst in the safari!"
+    );
+
     private List<String> cannotLeaveSafari = Lists.newArrayList(
             "&c&l(!) &cYou are not currently in the safari zone."
     );
@@ -75,6 +79,10 @@ public class PixelSafariLocale extends AbstractYamlConfig {
 
     public NPCDialogue getNpcDialogue() {
         return this.npcDialogue;
+    }
+
+    public List<String> getBlockedSafariCommand() {
+        return this.blockedSafariCommand;
     }
 
     @ConfigSerializable

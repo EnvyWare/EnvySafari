@@ -32,6 +32,7 @@ public class SafariCommandListener extends LazyListener {
 
         if (!this.isAllowedCommand(event)) {
             event.setCanceled(true);
+            player.message(this.mod.getLocale().getBlockedSafariCommand());
         }
     }
 
