@@ -127,7 +127,11 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
         if (this.manager.getConfig().getSafariSettings().isCacheInventory()) {
             this.getParent().getParent().inventory.items.clear();
             this.getParent().getParent().inventory.offhand.clear();
-            this.getParent().getParent().inventory.items.addAll(this.items);
+
+            for (int i = 0; i < this.items.size(); i++) {
+                this.getParent().getParent().inventory.items.set(i, this.items.get(i));
+            }
+
             this.getParent().getParent().inventory.offhand.set(0, this.offhand);
             this.getParent().getParent().refreshContainer(this.getParent().getParent().inventoryMenu);
         }

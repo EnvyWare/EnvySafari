@@ -21,7 +21,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
 import java.io.IOException;
 
-@Mod("pixelsafari")
+@Mod("envysafari")
 public class PixelSafariForge {
 
     public static final String NPC_NBT = "PIXEL_SAFARI_NPC";

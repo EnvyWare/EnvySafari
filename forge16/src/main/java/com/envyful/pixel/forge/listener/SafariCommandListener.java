@@ -23,6 +23,12 @@ public class SafariCommandListener extends LazyListener {
             return;
         }
 
+        String command = event.getParseResults().getReader().getString();
+
+        if (command.startsWith("/")) {
+            return;
+        }
+
         EnvyPlayer<?> player = PixelSafariForge.getInstance().getPlayerManager().getPlayer((ServerPlayerEntity) event.getParseResults().getContext().getSource().getEntity());
         PixelSafariAttribute attribute = player.getAttribute(PixelSafariForge.class);
 
@@ -30,17 +36,17 @@ public class SafariCommandListener extends LazyListener {
             return;
         }
 
-        if (!this.isAllowedCommand(event)) {
+        if (!this.isAllowedCommand(command)) {
             event.setCanceled(true);
             player.message(this.mod.getLocale().getBlockedSafariCommand());
         }
     }
 
-    private boolean isAllowedCommand(CommandEvent event) {
-        String command = event.getParseResults().getReader().getString();
-
+    private boolean isAllowedCommand(String command) {
+        System.out.println("Checking command: " + command);
         for (String allowedCommand : this.mod.getConfig().getSafariSettings().getAllowedCommands()) {
             if (command.equalsIgnoreCase(allowedCommand)) {
+                System.out.println("Match found: " + command +" " + allowedCommand);
                 return true;
             }
         }
