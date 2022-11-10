@@ -18,8 +18,8 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import java.io.IOException;
 
 @Mod(
-        modid = "pixelsafari",
-        name = "PixelSafari Forge",
+        modid = "envysafari",
+        name = "EnvySafari",
         version = PixelSafariForge.VERSION,
         acceptableRemoteVersions = "*"
 )

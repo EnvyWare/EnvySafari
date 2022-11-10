@@ -7,7 +7,7 @@ import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 
 import java.util.List;
 
-@ConfigPath("config/PixelSafari/locale.yml")
+@ConfigPath("config/EnvySafari/locale.yml")
 @ConfigSerializable
 public class PixelSafariLocale extends AbstractYamlConfig {
 

@@ -9,7 +9,7 @@ import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 import java.util.List;
 import java.util.Map;
 
-@ConfigPath("config/PixelSafari/config.yml")
+@ConfigPath("config/EnvySafari/config.yml")
 @ConfigSerializable
 public class PixelSafariConfig extends AbstractYamlConfig {
 
