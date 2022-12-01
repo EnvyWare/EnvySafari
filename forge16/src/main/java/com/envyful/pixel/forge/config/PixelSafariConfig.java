@@ -9,6 +9,7 @@ import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 @ConfigPath("config/EnvySafari/config.yml")
 @ConfigSerializable
@@ -136,6 +137,7 @@ public class PixelSafariConfig extends AbstractYamlConfig {
                 "safari",
                 "pixelsafari"
         );
+        private transient List<Pattern> allowedCommandPatterns = null;
 
         public Settings() {
         }
@@ -156,8 +158,22 @@ public class PixelSafariConfig extends AbstractYamlConfig {
             return this.allowPVP;
         }
 
-        public List<String> getAllowedCommands() {
-            return this.allowedCommands;
+        public boolean isCommandBlocked(String command) {
+            if (this.allowedCommandPatterns == null) {
+                this.allowedCommandPatterns = Lists.newArrayList();
+
+                for (String allowedCommand : this.allowedCommands) {
+                    this.allowedCommandPatterns.add(Pattern.compile(allowedCommand));
+                }
+            }
+
+            for (Pattern allowedCommandPattern : this.allowedCommandPatterns) {
+                if (allowedCommandPattern.matcher(command).matches()) {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

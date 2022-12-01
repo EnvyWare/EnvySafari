@@ -1,5 +1,6 @@
 package com.envyful.pixel.forge.command;
 
+import com.envyful.api.command.annotate.Child;
 import com.envyful.api.command.annotate.Command;
 import com.envyful.api.command.annotate.Permissible;
 import com.envyful.api.command.annotate.executor.CommandProcessor;
@@ -18,6 +19,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
         }
 )
 @Permissible("pixel.safari.command.leave")
+@Child
 public class LeaveCommand {
 
     @CommandProcessor

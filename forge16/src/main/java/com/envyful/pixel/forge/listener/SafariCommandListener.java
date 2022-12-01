@@ -36,19 +36,9 @@ public class SafariCommandListener extends LazyListener {
             return;
         }
 
-        if (!this.isAllowedCommand(command)) {
+        if (this.mod.getConfig().getSafariSettings().isCommandBlocked(command)) {
             event.setCanceled(true);
             player.message(this.mod.getLocale().getBlockedSafariCommand());
         }
-    }
-
-    private boolean isAllowedCommand(String command) {
-        for (String allowedCommand : this.mod.getConfig().getSafariSettings().getAllowedCommands()) {
-            if (command.equalsIgnoreCase(allowedCommand)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }

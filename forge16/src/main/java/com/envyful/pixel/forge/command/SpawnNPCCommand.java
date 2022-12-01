@@ -1,5 +1,6 @@
 package com.envyful.pixel.forge.command;
 
+import com.envyful.api.command.annotate.Child;
 import com.envyful.api.command.annotate.Command;
 import com.envyful.api.command.annotate.Permissible;
 import com.envyful.api.command.annotate.executor.CommandProcessor;
@@ -20,6 +21,7 @@ import net.minecraft.util.Util;
         }
 )
 @Permissible("pixel.safari.command.spawn.npc")
+@Child
 public class SpawnNPCCommand {
 
     @CommandProcessor()
