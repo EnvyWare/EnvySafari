@@ -10,8 +10,11 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.Util;
 
 @Command(
-        value = "abcsafari",
-        description = "PixelSafari main command"
+        value = "pixelsafari",
+        description = "PixelSafari main command",
+        aliases = {
+                "safari"
+        }
 )
 @SubCommands({
         SpawnNPCCommand.class,
