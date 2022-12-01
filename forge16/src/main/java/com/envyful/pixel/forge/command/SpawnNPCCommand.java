@@ -28,7 +28,6 @@ public class SpawnNPCCommand {
             NPCChatting npc = new NPCChatting(player.getLevel());
 
             npc.setPos(player.getX(), player.getY(), player.getZ());
-            npc.setNoAi(true);
             npc.setAIMode(EnumTrainerAI.StandStill);
             npc.addTag(PixelSafariForge.NPC_NBT);
             npc.setPersistenceRequired();
