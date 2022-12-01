@@ -5,6 +5,7 @@ import com.envyful.api.forge.chat.UtilChatColour;
 import com.envyful.api.forge.config.UtilConfigItem;
 import com.envyful.api.forge.player.ForgeEnvyPlayer;
 import com.envyful.api.forge.player.attribute.AbstractForgeAttribute;
+import com.envyful.api.forge.player.inventory.InventorySnapshot;
 import com.envyful.api.forge.player.util.UtilTeleport;
 import com.envyful.api.forge.server.UtilForgeServer;
 import com.envyful.api.forge.world.UtilWorld;
@@ -13,9 +14,6 @@ import com.envyful.pixel.forge.PixelSafariForge;
 import com.envyful.pixel.forge.config.PixelSafariConfig;
 import com.pixelmonmod.pixelmon.api.economy.BankAccount;
 import com.pixelmonmod.pixelmon.api.economy.BankAccountProxy;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
@@ -28,9 +26,7 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
     private long safariEnd = -1;
     private BankAccount bankAccount = null;
     private boolean inSafari = false;
-    private NonNullList<ItemStack> items = null;
-    private NonNullList<ItemStack> armor = null;
-    private ItemStack offhand = null;
+    private InventorySnapshot inventorySnapshot;
 
     public PixelSafariAttribute(PixelSafariForge manager, EnvyPlayer<?> parent) {
         super(manager, (ForgeEnvyPlayer) parent);
@@ -69,10 +65,8 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
         }
 
         if (this.manager.getConfig().getSafariSettings().isCacheInventory()) {
-            this.items = getFakeInv(this.getParent().getParent());
-            this.offhand = this.getParent().getParent().inventory.offhand.get(0);
-            this.getParent().getParent().inventory.items.clear();
-            this.getParent().getParent().inventory.offhand.clear();
+            this.inventorySnapshot = InventorySnapshot.of(this.getParent().getParent());
+            this.getParent().getParent().inventory.clearContent();
 
             List<ConfigItem> temporaryItems = this.manager.getConfig().getSafariSettings().getTemporaryItems();
 
@@ -88,15 +82,6 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
                 new Vector3d(zoneInfo.getX() + 0.5, zoneInfo.getY(), zoneInfo.getZ() + 0.5),
                 zoneInfo.getPitch(), zoneInfo.getYaw());
         this.parent.message(UtilChatColour.translateColourCodes('&',"&c&l- &c$" + this.manager.getConfig().getCost()));
-    }
-
-    public static NonNullList<ItemStack> getFakeInv(PlayerEntity player) {
-        NonNullList<ItemStack> ret = NonNullList.withSize(36, ItemStack.EMPTY);
-        for(int i = 0; i < player.inventory.items.size(); i++) {
-            ret.set(i, player.inventory.items.get(i).copy());
-        }
-
-        return ret;
     }
 
     private PixelSafariConfig.ZoneInfo getZone(String zone) {
@@ -125,15 +110,7 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
         PixelSafariConfig.ZoneInfo zoneInfo = this.manager.getConfig().getSpawnPosition();
 
         if (this.manager.getConfig().getSafariSettings().isCacheInventory()) {
-            this.getParent().getParent().inventory.items.clear();
-            this.getParent().getParent().inventory.offhand.clear();
-
-            for (int i = 0; i < this.items.size(); i++) {
-                this.getParent().getParent().inventory.items.set(i, this.items.get(i));
-            }
-
-            this.getParent().getParent().inventory.offhand.set(0, this.offhand);
-            this.getParent().getParent().refreshContainer(this.getParent().getParent().inventoryMenu);
+            this.inventorySnapshot.restore(this.getParent().getParent());
         }
 
         this.inSafari = false;

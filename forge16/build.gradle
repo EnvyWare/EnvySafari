@@ -49,8 +49,8 @@ dependencies {
 
     shadow group: 'org.spongepowered', name: 'configurate-yaml', version: '4.0.0'
 
-    shadow group: 'com.github.EnvyWare.API', name: 'commons', version: '3.8.5'
-    shadow (group: 'com.github.EnvyWare.API', name: 'forge16', version: '3.8.5') {
+    shadow group: 'com.github.EnvyWare.API', name: 'commons', version: '3.8.9'
+    shadow (group: 'com.github.EnvyWare.API', name: 'forge16', version: '3.8.9') {
         transitive = false
     }
 }
