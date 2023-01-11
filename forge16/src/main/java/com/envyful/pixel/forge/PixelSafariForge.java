@@ -8,6 +8,7 @@ import com.envyful.pixel.forge.command.PixelSafariCommand;
 import com.envyful.pixel.forge.config.PixelSafariConfig;
 import com.envyful.pixel.forge.config.PixelSafariLocale;
 import com.envyful.pixel.forge.listener.NPCInteractListener;
+import com.envyful.pixel.forge.listener.PlayerQuitListener;
 import com.envyful.pixel.forge.listener.SafariCatchListener;
 import com.envyful.pixel.forge.listener.SafariCommandListener;
 import com.envyful.pixel.forge.player.PixelSafariAttribute;
@@ -36,6 +37,7 @@ public class PixelSafariForge {
 
     public PixelSafariForge() {
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new PlayerQuitListener());
         Pixelmon.EVENT_BUS.register(new NPCInteractListener(this));
 
         instance = this;
