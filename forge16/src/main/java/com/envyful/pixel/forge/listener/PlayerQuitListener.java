@@ -12,6 +12,11 @@ public class PlayerQuitListener {
     @SubscribeEvent
     public void onPlayerQuit(PlayerEvent.PlayerLoggedOutEvent event) {
         EnvyPlayer<?> envyPlayer = PixelSafariForge.getInstance().getPlayerManager().getPlayer((ServerPlayerEntity) event.getPlayer());
+
+        if (envyPlayer == null) {
+            return;
+        }
+
         PixelSafariAttribute attribute = envyPlayer.getAttribute(PixelSafariForge.class);
 
         if (!attribute.inSafari()) {
