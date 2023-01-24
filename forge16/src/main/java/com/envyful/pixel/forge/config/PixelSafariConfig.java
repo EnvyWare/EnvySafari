@@ -134,8 +134,10 @@ public class PixelSafariConfig extends AbstractYamlConfig {
                         .name("Safari Poke Ball")
                 .build());
         private List<String> allowedCommands = Lists.newArrayList(
-                "safari",
-                "pixelsafari"
+                "safari l",
+                "safari leave",
+                "pixelsafari leave",
+                "pixelsafari l"
         );
         private transient List<Pattern> allowedCommandPatterns = null;
 
