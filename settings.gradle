@@ -17,3 +17,4 @@ plugins {
 rootProject.name = 'EnvySafari'
 //include 'forge'
 include 'forge16'
+include 'forge20'
