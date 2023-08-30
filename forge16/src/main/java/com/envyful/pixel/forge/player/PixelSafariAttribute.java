@@ -3,13 +3,12 @@ package com.envyful.pixel.forge.player;
 import com.envyful.api.config.type.ConfigItem;
 import com.envyful.api.forge.chat.UtilChatColour;
 import com.envyful.api.forge.config.UtilConfigItem;
-import com.envyful.api.forge.player.ForgeEnvyPlayer;
+import com.envyful.api.forge.player.ForgePlayerManager;
 import com.envyful.api.forge.player.attribute.AbstractForgeAttribute;
 import com.envyful.api.forge.player.inventory.InventorySnapshot;
 import com.envyful.api.forge.player.util.UtilTeleport;
 import com.envyful.api.forge.server.UtilForgeServer;
 import com.envyful.api.forge.world.UtilWorld;
-import com.envyful.api.player.EnvyPlayer;
 import com.envyful.pixel.forge.PixelSafariForge;
 import com.envyful.pixel.forge.config.PixelSafariConfig;
 import com.pixelmonmod.pixelmon.api.economy.BankAccount;
@@ -18,7 +17,6 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForge> {
@@ -28,12 +26,8 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
     private boolean inSafari = false;
     private InventorySnapshot inventorySnapshot;
 
-    public PixelSafariAttribute(PixelSafariForge manager, EnvyPlayer<?> parent) {
-        super(manager, (ForgeEnvyPlayer) parent);
-    }
-
-    public PixelSafariAttribute(UUID uuid) {
-        super(uuid);
+    public PixelSafariAttribute(PixelSafariForge manager, ForgePlayerManager playerManager) {
+        super(manager, playerManager);
     }
 
     public boolean inSafari() {
@@ -65,16 +59,16 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
         }
 
         if (this.manager.getConfig().getSafariSettings().isCacheInventory()) {
-            this.inventorySnapshot = InventorySnapshot.of(this.getParent().getParent());
-            this.getParent().getParent().inventory.clearContent();
+            this.inventorySnapshot = InventorySnapshot.of(this.parent.getParent());
+            this.parent.getParent().inventory.clearContent();
 
             List<ConfigItem> temporaryItems = this.manager.getConfig().getSafariSettings().getTemporaryItems();
 
             for (ConfigItem temporaryItem : temporaryItems) {
-                this.getParent().getParent().inventory.add(UtilConfigItem.fromConfigItem(temporaryItem));
+                this.parent.getParent().inventory.add(UtilConfigItem.fromConfigItem(temporaryItem));
             }
 
-            this.getParent().getParent().refreshContainer(this.getParent().getParent().inventoryMenu);
+            this.parent.getParent().refreshContainer(this.parent.getParent().inventoryMenu);
         }
 
         World world = UtilWorld.findWorld(this.manager.getConfig().getWorldName());
@@ -110,7 +104,7 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
         PixelSafariConfig.ZoneInfo zoneInfo = this.manager.getConfig().getSpawnPosition();
 
         if (this.manager.getConfig().getSafariSettings().isCacheInventory()) {
-            this.inventorySnapshot.restore(this.getParent().getParent());
+            this.inventorySnapshot.restore(this.parent.getParent());
         }
 
         this.inSafari = false;

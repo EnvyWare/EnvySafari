@@ -4,7 +4,7 @@ import com.envyful.api.player.EnvyPlayer;
 import com.envyful.pixel.forge.PixelSafariForge;
 import com.envyful.pixel.forge.player.PixelSafariAttribute;
 import com.pixelmonmod.pixelmon.Pixelmon;
-import com.pixelmonmod.pixelmon.api.events.BattleStartedEvent;
+import com.pixelmonmod.pixelmon.api.events.battles.BattleStartedEvent;
 import com.pixelmonmod.pixelmon.battles.controller.participants.BattleParticipant;
 import com.pixelmonmod.pixelmon.battles.controller.participants.PlayerParticipant;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -22,8 +22,8 @@ public class SafariCatchListener {
 
     @SubscribeEvent
     public void onBattleStart(BattleStartedEvent event) {
-        ServerPlayerEntity playerOne = this.getPlayer(event.participant1);
-        ServerPlayerEntity playerTwo = this.getPlayer(event.participant2);
+        ServerPlayerEntity playerOne = this.getPlayer(event.getTeamOne());
+        ServerPlayerEntity playerTwo = this.getPlayer(event.getTeamTwo());
 
         if (playerOne != null && playerTwo != null) {
             if (!this.mod.getConfig().getSafariSettings().isAllowPVP() && (this.inSafari(playerOne) || this.inSafari(playerTwo))) {
