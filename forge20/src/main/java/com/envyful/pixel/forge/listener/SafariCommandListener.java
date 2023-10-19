@@ -30,7 +30,7 @@ public class SafariCommandListener extends LazyListener {
         }
 
         EnvyPlayer<?> player = PixelSafariForge.getInstance().getPlayerManager().getPlayer((ServerPlayer) event.getParseResults().getContext().getSource().getEntity());
-        PixelSafariAttribute attribute = player.getAttribute(PixelSafariForge.class);
+        PixelSafariAttribute attribute = player.getAttribute(PixelSafariAttribute.class);
 
         if (attribute == null || !attribute.inSafari()) {
             return;

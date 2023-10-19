@@ -9,9 +9,8 @@ import com.envyful.pixel.forge.PixelSafariForge;
 import net.minecraft.server.level.ServerPlayer;
 
 @Command(
-        value = "pixelsafari",
-        description = "PixelSafari main command",
-        aliases = {
+        value = {
+                "pixelsafari",
                 "safari"
         }
 )

@@ -17,7 +17,7 @@ public class PlayerQuitListener {
             return;
         }
 
-        PixelSafariAttribute attribute = envyPlayer.getAttribute(PixelSafariForge.class);
+        PixelSafariAttribute attribute = envyPlayer.getAttribute(PixelSafariAttribute.class);
 
         if (!attribute.inSafari()) {
             return;

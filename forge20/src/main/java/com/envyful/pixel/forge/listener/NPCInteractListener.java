@@ -36,7 +36,7 @@ public class NPCInteractListener extends LazyListener {
         var world = UtilWorld.findWorld(this.mod.getConfig().getWorldName());
 
         var player = (ServerPlayer) event.player;
-        PixelSafariAttribute attribute = this.mod.getPlayerManager().getPlayer(player).getAttribute(PixelSafariForge.class);
+        PixelSafariAttribute attribute = this.mod.getPlayerManager().getPlayer(player).getAttribute(PixelSafariAttribute.class);
 
         if (world == null) {
             for (String s : this.mod.getLocale().getCurrentlyClosed()) {

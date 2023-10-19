@@ -1,10 +1,9 @@
 package com.envyful.pixel.forge.command;
 
-import com.envyful.api.command.annotate.Child;
 import com.envyful.api.command.annotate.Command;
-import com.envyful.api.command.annotate.Permissible;
 import com.envyful.api.command.annotate.executor.CommandProcessor;
 import com.envyful.api.command.annotate.executor.Sender;
+import com.envyful.api.command.annotate.permission.Permissible;
 import com.envyful.api.forge.chat.UtilChatColour;
 import com.envyful.api.forge.concurrency.UtilForgeConcurrency;
 import com.envyful.pixel.forge.PixelSafariForge;
@@ -13,14 +12,12 @@ import com.pixelmonmod.pixelmon.enums.EnumTrainerAI;
 import net.minecraft.server.level.ServerPlayer;
 
 @Command(
-        value = "spawnnpc",
-        description = "Spawns the Safari NPC on your location",
-        aliases = {
+        value = {
+                "spawnnpc",
                 "snpc"
         }
 )
 @Permissible("pixel.safari.command.spawn.npc")
-@Child
 public class SpawnNPCCommand {
 
     @CommandProcessor()

@@ -4,7 +4,7 @@ import com.envyful.api.config.type.ConfigItem;
 import com.envyful.api.forge.chat.UtilChatColour;
 import com.envyful.api.forge.config.UtilConfigItem;
 import com.envyful.api.forge.player.ForgePlayerManager;
-import com.envyful.api.forge.player.attribute.AbstractForgeAttribute;
+import com.envyful.api.forge.player.attribute.ManagedForgeAttribute;
 import com.envyful.api.forge.player.inventory.InventorySnapshot;
 import com.envyful.api.forge.player.util.UtilTeleport;
 import com.envyful.api.forge.server.UtilForgeServer;
@@ -18,15 +18,15 @@ import org.joml.Vector3d;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForge> {
+public class PixelSafariAttribute extends ManagedForgeAttribute<PixelSafariForge> {
 
     private long safariEnd = -1;
     private BankAccount bankAccount = null;
     private boolean inSafari = false;
     private InventorySnapshot inventorySnapshot;
 
-    public PixelSafariAttribute(PixelSafariForge manager, ForgePlayerManager playerManager) {
-        super(manager, playerManager);
+    public PixelSafariAttribute(ForgePlayerManager playerManager) {
+        super(PixelSafariForge.getInstance(), playerManager);
     }
 
     public boolean inSafari() {
@@ -74,7 +74,7 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
         UtilTeleport.teleportPlayer(this.parent.getParent(), world,
                 new Vector3d(zoneInfo.getX() + 0.5, zoneInfo.getY(), zoneInfo.getZ() + 0.5),
                 zoneInfo.getPitch(), zoneInfo.getYaw());
-        this.parent.message(UtilChatColour.translateColourCodes('&',"&c&l- &c$" + this.manager.getConfig().getCost()));
+        this.parent.message(UtilChatColour.colour("&c&l- &c$" + this.manager.getConfig().getCost()));
     }
 
     private PixelSafariConfig.ZoneInfo getZone(String zone) {
@@ -93,7 +93,7 @@ public class PixelSafariAttribute extends AbstractForgeAttribute<PixelSafariForg
 
     private BankAccount getBankAccount() {
         if (this.bankAccount == null) {
-            this.bankAccount = BankAccountProxy.getBankAccountUnsafe(this.parent.getUuid());
+            this.bankAccount = BankAccountProxy.getBankAccountNow(this.parent.getUuid());
         }
 
         return this.bankAccount;

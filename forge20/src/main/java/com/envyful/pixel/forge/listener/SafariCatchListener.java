@@ -56,7 +56,7 @@ public class SafariCatchListener {
         }
 
         EnvyPlayer<?> envyPlayer = PixelSafariForge.getInstance().getPlayerManager().getPlayer(player);
-        PixelSafariAttribute attribute = envyPlayer.getAttribute(PixelSafariForge.class);
+        PixelSafariAttribute attribute = envyPlayer.getAttribute(PixelSafariAttribute.class);
 
         return attribute != null && attribute.inSafari();
     }

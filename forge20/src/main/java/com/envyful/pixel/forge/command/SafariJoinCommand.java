@@ -1,10 +1,9 @@
 package com.envyful.pixel.forge.command;
 
-import com.envyful.api.command.annotate.Child;
 import com.envyful.api.command.annotate.Command;
-import com.envyful.api.command.annotate.Permissible;
 import com.envyful.api.command.annotate.executor.CommandProcessor;
 import com.envyful.api.command.annotate.executor.Sender;
+import com.envyful.api.command.annotate.permission.Permissible;
 import com.envyful.api.forge.world.UtilWorld;
 import com.envyful.api.player.EnvyPlayer;
 import com.envyful.pixel.forge.PixelSafariForge;
@@ -16,20 +15,18 @@ import com.pixelmonmod.pixelmon.comm.packetHandlers.dialogue.DialogueNextActionP
 import net.minecraft.server.level.ServerPlayer;
 
 @Command(
-        value = "join",
-        description = "Join the safari via command",
-        aliases = {
+        value = {
+                "join",
                 "j"
         }
 )
 @Permissible("pixel.safari.command.join")
-@Child
 public class SafariJoinCommand {
 
     @CommandProcessor
     public void onCommand(@Sender ServerPlayer player, String[] args) {
         EnvyPlayer<?> envyPlayer = PixelSafariForge.getInstance().getPlayerManager().getPlayer(player);
-        PixelSafariAttribute attribute = envyPlayer.getAttribute(PixelSafariForge.class);
+        PixelSafariAttribute attribute = envyPlayer.getAttribute(PixelSafariAttribute.class);
 
         if (attribute == null || attribute.inSafari()) {
             return;

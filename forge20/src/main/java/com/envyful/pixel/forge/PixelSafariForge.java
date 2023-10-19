@@ -2,6 +2,7 @@ package com.envyful.pixel.forge;
 
 import com.envyful.api.config.yaml.YamlConfigFactory;
 import com.envyful.api.forge.command.ForgeCommandFactory;
+import com.envyful.api.forge.command.parser.ForgeAnnotationCommandParser;
 import com.envyful.api.forge.concurrency.ForgeTaskBuilder;
 import com.envyful.api.forge.player.ForgePlayerManager;
 import com.envyful.pixel.forge.command.PixelSafariCommand;
@@ -30,7 +31,7 @@ public class PixelSafariForge {
     private static PixelSafariForge instance;
 
     private ForgePlayerManager playerManager = new ForgePlayerManager();
-    private ForgeCommandFactory commandFactory = new ForgeCommandFactory();
+    private ForgeCommandFactory commandFactory = new ForgeCommandFactory(ForgeAnnotationCommandParser::new, playerManager);
 
     private PixelSafariConfig config;
     private PixelSafariLocale locale;
@@ -44,7 +45,7 @@ public class PixelSafariForge {
 
         this.loadConfig();
 
-        playerManager.registerAttribute(this, PixelSafariAttribute.class);
+        playerManager.registerAttribute(PixelSafariAttribute.class);
     }
 
     public void loadConfig() {
@@ -72,7 +73,7 @@ public class PixelSafariForge {
 
     @SubscribeEvent
     public void onCommandRegister(RegisterCommandsEvent event) {
-        this.commandFactory.registerCommand(event.getDispatcher(), new PixelSafariCommand());
+        this.commandFactory.registerCommand(event.getDispatcher(), this.commandFactory.parseCommand(new PixelSafariCommand()));
     }
 
     public static PixelSafariForge getInstance() {

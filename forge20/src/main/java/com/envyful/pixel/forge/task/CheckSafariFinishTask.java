@@ -20,7 +20,7 @@ public class CheckSafariFinishTask implements Runnable {
                 continue;
             }
 
-            PixelSafariAttribute attribute = onlinePlayer.getAttribute(PixelSafariForge.class);
+            PixelSafariAttribute attribute = onlinePlayer.getAttribute(PixelSafariAttribute.class);
 
             if (attribute == null || !attribute.inSafari()) {
                 continue;
